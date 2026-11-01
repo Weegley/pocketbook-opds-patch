@@ -6,6 +6,16 @@
 
 Включает вторую строку под заголовками навигационных записей штатного OPDS-клиента — текст каталога из `content type="text"`. В [inpx-web](https://github.com/bookpauk/inpx-web) у папки самой книги это авторы; у других папок — например, количество книг. Навигация **папка книги → раздел «Книга» → подробности/скачивание** сохраняется. Менять сервер не нужно.
 
+Оригинальный вид на ридере:
+
+<img width="200" alt="изображение" src="https://github.com/user-attachments/assets/3e7767a6-0356-46e8-809e-eb768718adbe" /> <img width="200" alt="изображение" src="https://github.com/user-attachments/assets/7bb4d5a4-6c03-461a-bb3c-8c383af5b866" />
+
+После применения патча:
+
+<img width="200" alt="изображение" src="https://github.com/user-attachments/assets/a41f26ae-521b-4b2a-993d-f5a841d1001d" /> <img width="200" alt="изображение" src="https://github.com/user-attachments/assets/f0172837-62e2-4204-bff3-fff17e8ad513" />
+
+
+
 ## Скачать и использовать
 
 Приложения находятся в [последнем релизе](https://github.com/Weegley/pocketbook-opds-patch/releases/latest).
