@@ -25,7 +25,7 @@ Get the apps from the [latest release](https://github.com/Weegley/pocketbook-opd
 | **Non-rooted patch.app** | You want to install/remove the fix in the system OPDS client. Obtains root if needed and removes it after success. |
 | **Rooted patch.app** | You already have the supported pbjb root and want to keep it. Installs/removes the system fix without changing root. |
 
-1. Copy the chosen `.app` to `applications/` in reader internal storage. No extra folders are needed.
+1. Unzip the chosen `.app` to `applications/` in reader internal storage. No extra folders are needed.
 2. Safely disconnect USB and launch it from Applications.
 3. Online libraries opens OPDS. A patch manager offers **Install** or **Uninstall** based on the current library; confirm and allow **one reboot**.
 
