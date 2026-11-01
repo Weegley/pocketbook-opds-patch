@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "python": {
+    "tested": "CPython 3.14.2",
+    "minimum": "3.11",
+    "python_packages_required": false,
+    "automatic_project_local_bootstrap": true,
+    "bootstrap_lock": "scripts/python-bootstrap.lock",
+    "windows_archive": {
+      "url": "https://www.python.org/ftp/python/3.14.2/python-3.14.2-amd64.zip",
+      "sha256": "7f9f03032b19222299d04ae5b1ad459bd913bc25e8d1ff070e1a80e09a4feddf",
+      "source_manifest": "https://www.python.org/ftp/python/3.14.2/windows-3.14.2.json"
+    },
+    "linux_archive": {
+      "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20251209/cpython-3.14.2%2B20251209-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz",
+      "sha256": "114d6e8078f3daf7f8f0dd3eda723bf40bfda77da555a0319d70294c06722dc4",
+      "release": "https://github.com/astral-sh/python-build-standalone/releases/tag/20251209"
+    }
+  },
+  "zig": {
+    "version": "0.13.0",
+    "metadata_url": "https://pypi.org/pypi/ziglang/0.13.0/json",
+    "windows_x86_64_wheel_sha256": "b64b2aa936ebbfeecfbb2611df331a5474edebe1246b98c2f56d6ae4d58b71fc",
+    "linux_x86_64_wheel_sha256": "3ce0c9f16547e5d61b32e0d226926e9a2552ef4b91fccf7ab5ea1a623a77824b",
+    "patcher_target": "arm-linux-musleabi",
+    "launcher_target": "arm-linux-gnueabi.2.19",
+    "cpu": "cortex_a8"
+  },
+  "windows_test_shell": {
+    "version": "BusyBox v1.39.0-FRP-6354-g5f09fb446",
+    "url": "https://frippery.org/files/busybox/busybox64.exe",
+    "url_is_mutable": true,
+    "sha256": "95343c871869cc0ab57ecec26b2f9af0370eb9c954f7e5ddd017163e4e0d09a0",
+    "mismatch_policy": "refuse; obtain exact pinned binary from upstream archive; no silent upgrade"
+  },
+  "linux_test_shell": {
+    "executable": "/bin/sh",
+    "uses_system_posix_tools": true,
+    "not_yet_executed": true
+  },
+  "pbjb": {
+    "repository": "https://github.com/ezdiy/pbjb",
+    "commit": "8f1fb889d575237f2b292e88df6aabf552142d87",
+    "jailbreak_sha256": "a523b9e77519fa0dd657268c4ad59d3ea1bcb4e07355687e6e372b68ff8c6a10",
+    "su_sha256": "7babf251fc0f16dfba19c4f36305e280d5e2480b94100d1e6f16bcd564cc9fbb",
+    "bundled_in_public_build": "Non-rooted only; unchanged upstream jailbreak and su",
+    "license_confirmed": false
+  },
+  "reference_host_sha256": "4e973c3616e728a4c7954b6a0e888bd64df55841485743adfb74d2eed8cfdc43",
+  "firmware_required_for_build": false,
+  "downloads_and_installs": "repository-local only"
+}

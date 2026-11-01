@@ -1,0 +1,12 @@
+# Portable Python archives; consumed by PowerShell and POSIX sh without Python.
+VERSION=3.14.2
+WINDOWS_URL=https://www.python.org/ftp/python/3.14.2/python-3.14.2-amd64.zip
+WINDOWS_ARCHIVE=python-3.14.2-amd64.zip
+WINDOWS_SHA256=7f9f03032b19222299d04ae5b1ad459bd913bc25e8d1ff070e1a80e09a4feddf
+WINDOWS_INSTALL=windows-3.14.2
+WINDOWS_EXE=python.exe
+LINUX_URL=https://github.com/astral-sh/python-build-standalone/releases/download/20251209/cpython-3.14.2%2B20251209-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz
+LINUX_ARCHIVE=cpython-3.14.2+20251209-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz
+LINUX_SHA256=114d6e8078f3daf7f8f0dd3eda723bf40bfda77da555a0319d70294c06722dc4
+LINUX_INSTALL=linux-3.14.2-20251209
+LINUX_EXE=python/bin/python3

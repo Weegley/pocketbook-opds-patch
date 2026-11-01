@@ -1,0 +1,10 @@
+{
+  "kind": "user_report",
+  "date": "2026-11-01",
+  "device": "PocketBook 632 (Touch HD 3)",
+  "firmware": "U632.6.11.2001",
+  "user_statement": "Standalone работает; non-root/root работает",
+  "applications_reported_working": ["Online libraries.app", "Non-rooted patch.app", "Rooted patch.app"],
+  "scope": "Owner reports the v9 applications working. No new device logs or detailed install/uninstall/recovery test matrix accompanied this report.",
+  "follow_up": "Default build.ps1 without Zig failed as expected; build preflight and error reporting were improved without changing runtime sources or app bytes."
+}

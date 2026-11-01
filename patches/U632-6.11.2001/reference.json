@@ -1,0 +1,53 @@
+{
+  "status": "EXPERIMENTAL 6.11 PORT; NOT TESTED ON DEVICE",
+  "original_sha256": "e8ee93b531b4019500ea06f571028330ce3b331f6970b581caaa874295f73a98",
+  "patched_sha256": "c6a4b5bc1e119e4e2c1ff0cc14fb56766448995ca61ba7743f5428e4d30269f5",
+  "original_size": 598364,
+  "patched_size": 610748,
+  "new_segment_rva": 602112,
+  "code_rva": 602336,
+  "second_helper_rva": 602432,
+  "helper_end_rva": 602468,
+  "relocated_exidx_rva": 602468,
+  "relocated_phoff": 602112,
+  "relocated_shoff": 609668,
+  "changes": [
+    {
+      "file_offset": 28,
+      "old_hex": "34000000",
+      "new_hex": "00300900",
+      "purpose": "Relocate program header table into added mapped segment"
+    },
+    {
+      "file_offset": 32,
+      "old_hex": "4c1d0900",
+      "new_hex": "844d0900",
+      "purpose": "Relocate section table for new code section and EHABI metadata"
+    },
+    {
+      "file_offset": 44,
+      "old_hex": "0600",
+      "new_hex": "0700",
+      "purpose": "Add one PT_LOAD, preserve GNU_STACK and RELRO"
+    },
+    {
+      "file_offset": 48,
+      "old_hex": "1a00",
+      "new_hex": "1b00",
+      "purpose": "Add .opds_patch section"
+    },
+    {
+      "file_offset": 250908,
+      "old_hex": "000056e3",
+      "new_hex": "2f5701eb",
+      "purpose": "Use two-label layout for navigation Content without changing r6 classification"
+    },
+    {
+      "file_offset": 251224,
+      "old_hex": "b80191e5bc1191e5",
+      "new_hex": "f85601eb00f020e3",
+      "purpose": "Select Content text/control block for folders, retain acquisition Author"
+    }
+  ],
+  "rollback": "Restore changed prefix bytes and truncate to original_size; or delete private copy"
+}

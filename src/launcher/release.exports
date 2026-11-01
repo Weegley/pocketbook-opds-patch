@@ -1,0 +1,6 @@
+{
+    global:
+        InkViewMain;
+        _ZN10pocketbook4opds7OpdsApp5StartESt8functionIFviEES2_IFiiPPcEE;
+    local: *;
+};

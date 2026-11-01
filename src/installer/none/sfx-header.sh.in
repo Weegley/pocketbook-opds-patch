@@ -1,0 +1,55 @@
+#!/bin/sh
+# Self-contained PocketBook package. Everything after __OPDS_DATA__ is data.
+set -u
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export PATH
+unset LD_PRELOAD LD_LIBRARY_PATH ENV BASH_ENV
+umask 077
+@I18N@
+fail() { dialog 3 OPDS "$1" OK >/dev/null 2>&1 || :; exit 1; }
+case "$(uname -m)" in arm*) :;; *) exit 126;; esac
+opds_select_language
+[ "$(cat /ebrmain/.version 2>/dev/null)" = ver=6.11.2001 ] || fail "$(opds_text firmware_required)"
+grep -qx model=Pocket632 /ebrmain/config/device.cfg &&
+grep -qx variant=U632 /ebrmain/config/device.cfg || fail "$(opds_text model_required)"
+USERDIR=/mnt/ext1/system/.opds-authors-611-open
+[ ! -L "$USERDIR" ] || fail "$(opds_text cache_symlink)"
+mkdir -p "$USERDIR" || fail "$(opds_text storage_unavailable)"
+# Serialize cache creation. A running standalone process releases this lock at exec.
+exec 7> "$USERDIR/extract.guard"
+flock -n 7 || fail "$(opds_text extraction_busy)"
+boot_id=$(cat /proc/sys/kernel/random/boot_id 2>/dev/null || :)
+if [ -n "$boot_id" ]; then
+    for previous in "$USERDIR"/run.*; do
+        [ -d "$previous" ] && [ ! -L "$previous" ] && [ -f "$previous/.boot-id" ] || continue
+        [ "$(cat "$previous/.boot-id")" = "$boot_id" ] || rm -rf "$previous"
+    done
+fi
+# A standalone OPDS process keeps its library mapped; reuse its verified cache.
+if [ 'standalone.sh' = standalone.sh ] && [ -d "$USERDIR/standalone-open-v9" ]; then
+    [ ! -L "$USERDIR/standalone-open-v9" ] &&
+    [ "$(sha256sum "$USERDIR/standalone-open-v9/SHA256SUMS" | awk '{print $1}')" = '@MANIFEST_SHA@' ] &&
+    (cd "$USERDIR/standalone-open-v9" && sha256sum -c SHA256SUMS >/dev/null 2>&1) || fail "$(opds_text cache_damaged)"
+    flock -u 7
+    exec 7>&-
+    exec /bin/sh "$USERDIR/standalone-open-v9/scripts/standalone.sh"
+fi
+CACHE=$(mktemp -d "$USERDIR/run.XXXXXX") || fail "$(opds_text extract_create_failed)"
+printf '%s\n' "$boot_id" > "$CACHE/.boot-id"
+line=$(awk '/^__OPDS_DATA__$/ {print NR+1; exit}' "$0")
+[ -n "$line" ] || fail "$(opds_text app_damaged)"
+tail -n+"$line" "$0" > "$CACHE/payload.tgz" || fail "$(opds_text app_read_failed)"
+[ "$(sha256sum "$CACHE/payload.tgz" | awk '{print $1}')" = '@ARCHIVE_SHA@' ] || fail "$(opds_text app_checksum_failed)"
+tar xzf "$CACHE/payload.tgz" -C "$CACHE" || fail "$(opds_text extract_failed)"
+rm -f "$CACHE/payload.tgz"
+(cd "$CACHE" && sha256sum -c SHA256SUMS >/dev/null 2>&1) || fail "$(opds_text component_damaged)"
+if [ 'standalone.sh' = standalone.sh ]; then
+    [ ! -e "$USERDIR/standalone-open-v9" ] || fail "$(opds_text standalone_busy)"
+    mv "$CACHE" "$USERDIR/standalone-open-v9" || fail "$(opds_text cache_save_failed)"
+    CACHE=$USERDIR/standalone-open-v9
+fi
+flock -u 7
+exec 7>&-
+exec /bin/sh "$CACHE/scripts/standalone.sh"
+exit 1
+__OPDS_DATA__
