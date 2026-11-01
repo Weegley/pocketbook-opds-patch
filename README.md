@@ -6,6 +6,15 @@
 
 Enables a second line below navigation entry titles in the native OPDS client, showing the catalog's `content type="text"`. In [inpx-web](https://github.com/bookpauk/inpx-web), a book's folder supplies its author(s); other folders may supply text such as book counts. The original **book folder → “Book” feed → details/download** navigation is preserved. No server changes are needed.
 
+How it looks originally:
+
+<img width="200" alt="изображение" src="https://github.com/user-attachments/assets/3e7767a6-0356-46e8-809e-eb768718adbe" /> <img width="200" alt="изображение" src="https://github.com/user-attachments/assets/7bb4d5a4-6c03-461a-bb3c-8c383af5b866" />
+
+How it looks after patch:
+
+<img width="200" alt="изображение" src="https://github.com/user-attachments/assets/a41f26ae-521b-4b2a-993d-f5a841d1001d" /> <img width="200" alt="изображение" src="https://github.com/user-attachments/assets/f0172837-62e2-4204-bff3-fff17e8ad513" />
+
+
 ## Download and use
 
 Get the apps from the [latest release](https://github.com/Weegley/pocketbook-opds-patch/releases/latest).
